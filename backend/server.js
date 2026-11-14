@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const { generateMockAnalysis } = require("./mockAnalysis");
+const { analyzeArticleWithAI } = require("./aiService");
 const { extractArticleFromURL } = require("./utils/extractArticleFromURL");
 
 const app = express();
@@ -50,7 +50,7 @@ app.post("/analyze", async (req, res) => {
       });
     }
 
-    const result = generateMockAnalysis(textToAnalyze);
+    const result = await analyzeArticleWithAI(textToAnalyze);
     return res.json(result);
   } catch (error) {
     console.error("Error:", error.message);

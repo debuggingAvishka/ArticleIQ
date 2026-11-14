@@ -30,7 +30,7 @@ async function analyzeArticleWithAI(text) {
 
   } catch (err) {
     console.error("❌ AI ERROR:", err.message);
-    return fallbackResponse();
+    throw err;
   }
 }
 
@@ -96,22 +96,29 @@ OUTPUT JSON ONLY:
     }
   ],
   "comparisons": [
-    {
-      "outlet": "realistic outlet name",
-      "leaning": "Left | Right | Neutral",
-      "headline": "how they would frame it",
-      "tone": "tone description",
-      "framing": "what angle they emphasize"
-    },
-    {
-      "outlet": "another outlet",
-      "leaning": "Left | Right | Neutral",
-      "headline": "alternative framing",
-      "tone": "tone description",
-      "framing": "angle difference"
-    }
-  ]
+  {
+    "outlet": "Hypothetical perspective A",
+    "leaning": "Left | Right | Neutral",
+    "headline": "Illustrative headline showing one possible framing",
+    "tone": "tone description",
+    "framing": "what angle this perspective emphasizes"
+  },
+  {
+    "outlet": "Hypothetical perspective B",
+    "leaning": "Left | Right | Neutral",
+    "headline": "Illustrative headline showing an alternative framing",
+    "tone": "tone description",
+    "framing": "how this perspective differs"
+  }
+]
 }
+  MEDIA COMPARISON RULES:
+
+- These comparisons are hypothetical framing examples, NOT actual reporting.
+- NEVER invent or attribute headlines to real media outlets.
+- NEVER claim that a publication has covered this story unless verified sources are provided.
+- Use labels such as "Hypothetical perspective A" and "Hypothetical perspective B".
+- Explain differences in framing without presenting political leaning as an established fact.
 
 ----------------------------------------
 IMPORTANT:
@@ -170,19 +177,6 @@ function clamp(val) {
 }
 
 /* ----------------------------- FALLBACK ----------------------------- */
-function fallbackResponse() {
-  return {
-    credibilityScore: 50,
-    biasScore: 50,
-    emotionalTone: 50,
-    confidence: 50,
-    leaning: "Unknown",
-    evidenceStrength: "Unknown",
-    neutralSummary: "AI analysis unavailable.",
-    explanationPoints: [],
-    claims: [],
-    comparisons: [],
-  };
-}
+
 
 module.exports = { analyzeArticleWithAI };
