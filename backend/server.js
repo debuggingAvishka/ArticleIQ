@@ -11,6 +11,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://articleiq-1.onrender.com",
+  "https://article-iq.vercel.app",
 ];
 
 app.use(
